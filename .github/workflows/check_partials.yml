@@ -23,11 +23,11 @@ jobs:
     - name: Output changed files
       id: changes
       run: >-
-        echo "::set-output name=md::$(
+        echo "md=$(
           git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} |
           grep .md$ |
           xargs
-        )"
+        )" >> $GITHUB_OUTPUT
 
     - name: Check for invalid partials
       run: |
